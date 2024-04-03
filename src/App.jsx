@@ -3,43 +3,94 @@ import Login from "./Components/Login";
 import Dashboard from "./Components/Dashboard";
 import { Categories, Desktops, Laptops } from "./Components/Categories";
 import Products from "./Components/Products";
+import PrivateRoute from "./Components/PrivateRoute";
+import SignUpForm from "./Components/SignUp";
+import AuthenticatedRoute from "./Components/AuthenticatedRoute";
+import Navbar from "./Components/Navbar";
+import { fakeAuth } from "./Components/Login";
+import Home from "./Components/Home";
+import Admin from "./Components/Admin";
+import Logout from "./Components/Logout";
+import { useEffect } from "react";
 
 export default function App() {
   return (
     <div>
-      <nav className="bg-blue-500 p-6">
-        <ul className="flex space-x-4">
-          <li>
-            <Link to="/login" className="text-white hover:text-gray-200">
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link to="/dashboard" className="text-white hover:text-gray-200">
-              Dashboard
-            </Link>
-          </li>
-          <li>
-            <Link to="/Categories" className="text-white hover:text-gray-200">
-              Categories
-            </Link>
-          </li>
-          <li>
-            <Link to="/Products" className="text-white hover:text-gray-200">
-              Products
-            </Link>
-          </li>
-        </ul>
-      </nav>
+      {console.log(fakeAuth.isAuthenticated)}
+      {fakeAuth.isAuthenticated && <Navbar />}
 
       <Routes>
-        <Route index path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/categories" element={<Categories />}>
+        <Route
+          path="/login"
+          element={
+            <AuthenticatedRoute>
+              <Login />
+            </AuthenticatedRoute>
+          }
+        />
+
+        <Route
+          path="/SignUp"
+          element={
+            <AuthenticatedRoute>
+              <SignUpForm />
+            </AuthenticatedRoute>
+          }
+        />
+
+        <Route
+          path="/Logout"
+          element={
+            <PrivateRoute>
+              <Logout />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/categories"
+          element={
+            <PrivateRoute>
+              <Categories />
+            </PrivateRoute>
+          }
+        >
           <Route path="laptops" element={<Laptops />} />
           <Route path="desktops" element={<Desktops />} />
         </Route>
-        <Route path="products/*" element={<Products />} />
+        <Route
+          path="products/*"
+          element={
+            <PrivateRoute>
+              <Products />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute>
+              <Admin />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );
