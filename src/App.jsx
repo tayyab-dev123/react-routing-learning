@@ -12,12 +12,17 @@ import Home from "./Components/Home";
 import Admin from "./Components/Admin";
 import Logout from "./Components/Logout";
 import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function App() {
+  const auth = useSelector((auth) => {
+    console.log(auth.auth.isAuthenticated);
+    return auth.auth.isAuthenticated;
+  });
   return (
     <div>
-      {console.log(fakeAuth.isAuthenticated)}
-      {fakeAuth.isAuthenticated && <Navbar />}
+      {console.log(auth)}
+      {auth && <Navbar />}
 
       <Routes>
         <Route
@@ -37,61 +42,50 @@ export default function App() {
             </AuthenticatedRoute>
           }
         />
-
-        <Route
+        {/* <Route
           path="/Logout"
           element={
             <PrivateRoute>
               <Logout />
             </PrivateRoute>
           }
-        />
-
-        <Route
-          path="/categories"
-          element={
-            <PrivateRoute>
-              <Categories />
-            </PrivateRoute>
-          }
-        >
-          <Route path="laptops" element={<Laptops />} />
-          <Route path="desktops" element={<Desktops />} />
-        </Route>
-        <Route
-          path="products/*"
-          element={
-            <PrivateRoute>
-              <Products />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/admin"
-          element={
-            <PrivateRoute>
-              <Admin />
-            </PrivateRoute>
-          }
-        />
-
-        <Route
+        /> */}
+        {/* <Route
           path="/dashboard"
           element={
             <PrivateRoute>
               <Dashboard />
             </PrivateRoute>
           }
-        />
-        <Route
-          path="/"
-          element={
-            <PrivateRoute>
-              <Home />
-            </PrivateRoute>
-          }
-        />
+        /> */}
+
+        {/* <Route path="" element={<AuthenticatedRoute />}>
+          <Route path="/login" element={<Login />} />
+
+          <Route path="/SignUp" element={<SignUpForm />} />
+        </Route> */}
+
+        <Route path="" element={<PrivateRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="products/*" element={<Products />} />
+          <Route path="/admin" element={<Admin />} />
+
+          <Route path="/categories" element={<Categories />}>
+            <Route path="laptops" element={<Laptops />} />
+            <Route path="desktops" element={<Desktops />} />
+          </Route>
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/" element={<Home />} />
+        </Route>
       </Routes>
     </div>
   );
+}
+
+{
+  /* <Route path="" element={<AuthenticatedRoute />}>
+<Route path="/login" element={<Login />} />
+
+<Route path="/SignUp" element={<SignUpForm />} />
+</Route> */
 }

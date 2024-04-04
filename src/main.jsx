@@ -4,21 +4,15 @@ import App from "./App.jsx";
 import "./index.css";
 import Login from "./Components/Login.jsx";
 import { BrowserRouter } from "react-router-dom";
-import { AuthProvider } from "./Context/AuthProvider.jsx";
-
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Login />,
-//   },
-// ]);
+import { store } from "./app/store.js";
+import { Provider } from "react-redux";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Provider store={store}>
         <App />
-      </BrowserRouter>
-    </AuthProvider>
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
