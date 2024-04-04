@@ -11,11 +11,7 @@ const Navbar = () => {
               Home
             </Link>
           </li>
-          {/* <li>
-            <Link to="/login" className="text-white hover:text-gray-200">
-              Login
-            </Link>
-          </li> */}
+
           <li>
             <Link to="/dashboard" className="text-white hover:text-gray-200">
               Dashboard

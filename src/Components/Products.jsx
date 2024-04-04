@@ -54,14 +54,6 @@ const Products = () => {
         />
         <Route index element={<h2>Select The Product</h2>} />
       </Routes>
-
-      {/* <Routes>
-        <Route
-          path=":productId"
-          element={<Product productData={productData} />}
-        />
-        <Route index element={<p>Please select a product.</p>} />
-      </Routes> */}
     </div>
   );
 };

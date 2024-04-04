@@ -42,12 +42,6 @@ export default function Login() {
     login(username, password);
   };
 
-  // useEffect(() => {
-  //   if (redirectToReferrer) {
-  //     navigate(from.pathname, { replace: true });
-  //   }
-  // }, [redirectToReferrer, navigate, from.pathname]);
-
   return (
     <>
       <div className="flex items-center justify-center min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -91,12 +85,3 @@ export default function Login() {
     </>
   );
 }
-
-/* A fake authentication function */
-export const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true;
-    setTimeout(cb, 100);
-  },
-};

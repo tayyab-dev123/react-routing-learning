@@ -25,40 +25,6 @@ export default function App() {
       {auth && <Navbar />}
 
       <Routes>
-        {/* <Route
-          path="/login"
-          element={
-            <AuthenticatedRoute>
-              <Login />
-            </AuthenticatedRoute>
-          }
-        />
-
-        <Route
-          path="/SignUp"
-          element={
-            <AuthenticatedRoute>
-              <SignUpForm />
-            </AuthenticatedRoute>
-          }
-        /> */}
-        {/* <Route
-          path="/Logout"
-          element={
-            <PrivateRoute>
-              <Logout />
-            </PrivateRoute>
-          }
-        /> */}
-        {/* <Route
-          path="/dashboard"
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        /> */}
-
         <Route path="" element={<AuthenticatedRoute />}>
           <Route path="/login" element={<Login />} />
 
@@ -80,12 +46,4 @@ export default function App() {
       </Routes>
     </div>
   );
-}
-
-{
-  /* <Route path="" element={<AuthenticatedRoute />}>
-<Route path="/login" element={<Login />} />
-
-<Route path="/SignUp" element={<SignUpForm />} />
-</Route> */
 }
