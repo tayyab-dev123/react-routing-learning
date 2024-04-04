@@ -1,5 +1,4 @@
 import React from "react";
-import { fakeAuth } from "./Login";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { authenticate } from "../features/authSlice";

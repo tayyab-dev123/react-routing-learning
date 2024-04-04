@@ -7,7 +7,6 @@ import PrivateRoute from "./Components/PrivateRoute";
 import SignUpForm from "./Components/SignUp";
 import AuthenticatedRoute from "./Components/AuthenticatedRoute";
 import Navbar from "./Components/Navbar";
-import { fakeAuth } from "./Components/Login";
 import Home from "./Components/Home";
 import Admin from "./Components/Admin";
 import Logout from "./Components/Logout";
