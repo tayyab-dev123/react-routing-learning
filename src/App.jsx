@@ -25,7 +25,7 @@ export default function App() {
       {auth && <Navbar />}
 
       <Routes>
-        <Route
+        {/* <Route
           path="/login"
           element={
             <AuthenticatedRoute>
@@ -41,7 +41,7 @@ export default function App() {
               <SignUpForm />
             </AuthenticatedRoute>
           }
-        />
+        /> */}
         {/* <Route
           path="/Logout"
           element={
@@ -59,11 +59,11 @@ export default function App() {
           }
         /> */}
 
-        {/* <Route path="" element={<AuthenticatedRoute />}>
+        <Route path="" element={<AuthenticatedRoute />}>
           <Route path="/login" element={<Login />} />
 
           <Route path="/SignUp" element={<SignUpForm />} />
-        </Route> */}
+        </Route>
 
         <Route path="" element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />

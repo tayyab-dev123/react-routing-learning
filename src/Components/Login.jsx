@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { authenticate } from "../features/authSlice";
 
 export default function Login() {
   const navigate = useNavigate();
   const { state } = useLocation();
+  const dispatch = useDispatch();
   const from = state?.from || { pathname: "/" };
   const [redirectToReferrer, setRedirectToReferrer] = useState(false);
   const [username, setUsername] = useState("");
@@ -15,6 +17,11 @@ export default function Login() {
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
 
+  const auth = useSelector((auth) => {
+    console.log(auth.auth.isAuthenticated);
+    return auth.auth.isAuthenticated;
+  });
+
   const login = (enteredUsername, enteredPassword) => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
 
@@ -23,9 +30,8 @@ export default function Login() {
       storedUser.username === enteredUsername &&
       storedUser.password === enteredPassword
     ) {
-      fakeAuth.authenticate(() => {
-        setRedirectToReferrer(true);
-      });
+      dispatch(authenticate(true));
+      navigate("/dashboard");
     } else {
       console.error("Authentication failed");
     }
@@ -36,11 +42,11 @@ export default function Login() {
     login(username, password);
   };
 
-  useEffect(() => {
-    if (redirectToReferrer) {
-      navigate(from.pathname, { replace: true });
-    }
-  }, [redirectToReferrer, navigate, from.pathname]);
+  // useEffect(() => {
+  //   if (redirectToReferrer) {
+  //     navigate(from.pathname, { replace: true });
+  //   }
+  // }, [redirectToReferrer, navigate, from.pathname]);
 
   return (
     <>

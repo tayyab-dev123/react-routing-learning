@@ -1,9 +1,14 @@
 import { useEffect } from "react";
 import { Outlet, Navigate } from "react-router-dom";
-import { fakeAuth } from "./Login";
+import { useSelector, useDispatch } from "react-redux";
 
 const PrivateRoutes = () => {
-  return fakeAuth.isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
+  const auth = useSelector((auth) => {
+    console.log(auth.auth.isAuthenticated);
+    return auth.auth.isAuthenticated;
+  });
+
+  return auth ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default PrivateRoutes;
